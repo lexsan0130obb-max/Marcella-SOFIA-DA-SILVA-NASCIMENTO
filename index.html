@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcella Sofia ❤️</title>
+
+<style>
+body{
+margin:0;
+overflow-x:hidden;
+overflow-y:auto;
+font-family:'Segoe UI',sans-serif;
+background:radial-gradient(circle at center,#2b0033,#12001a,#000);
+color:white;
+text-align:center;
+}
+
+/* INTRO CINEMATOGRAFICA */
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:20;
+animation:fadeOut 4s forwards;
+animation-delay:6s;
+}
+
+.intro-text{
+font-size:28px;
+letter-spacing:4px;
+opacity:0;
+animation:fadeIn 5s forwards;
+}
+
+@keyframes fadeIn{to{opacity:1;}}
+@keyframes fadeOut{to{opacity:0;visibility:hidden;}}
+
+/* LUA */
+.moon{
+position:absolute;
+top:10%;
+left:50%;
+transform:translateX(-50%);
+width:200px;
+height:200px;
+background:radial-gradient(circle,#fff,#ddd,#aaa);
+border-radius:50%;
+box-shadow:0 0 60px #ff99ff;
+opacity:0.8;
+}
+
+/* NOME */
+.name{
+position:absolute;
+top:20%;
+width:100%;
+font-size:28px;
+color:#fff;
+text-shadow:0 0 20px #ff66ff,0 0 40px #ff99ff;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{from{opacity:0.6;}to{opacity:1;}}
+
+.container{
+margin-top:250px;
+padding:20px;
+}
+
+#contador{color:#ffccff;margin:15px 0;}
+
+.gallery{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.gallery img{
+width:200px;
+border-radius:20px;
+box-shadow:0 0 20px #ff66ff;
+transition:0.5s;
+}
+
+.gallery img:hover{transform:scale(1.05);}
+
+/* CARTA */
+#letter{
+width:85%;
+max-width:650px;
+margin:30px auto;
+background:rgba(255,255,255,0.1);
+padding:20px;
+border-radius:20px;
+box-shadow:0 0 25px pink;
+min-height:220px;
+}
+
+/* ESTRELAS */
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:blink 2s infinite alternate;
+}
+@keyframes blink{from{opacity:0.2;}to{opacity:1;}}
+
+/* PETALAS */
+.petal{
+position:absolute;
+width:12px;
+height:12px;
+background:pink;
+border-radius:50%;
+opacity:0.7;
+animation:fall linear infinite;
+}
+@keyframes fall{from{transform:translateY(-10vh);}to{transform:translateY(100vh);}}
+
+/* CORACOES */
+.heart{
+position:absolute;
+color:#ff4da6;
+animation:floatUp 6s linear infinite;
+}
+@keyframes floatUp{from{transform:translateY(100vh);}to{transform:translateY(-10vh);opacity:0;}}
+
+/* FOGOS */
+.firework{
+position:absolute;
+width:6px;
+height:6px;
+background:#ff66ff;
+border-radius:50%;
+animation:explode 1s ease-out forwards;
+}
+@keyframes explode{to{transform:scale(25);opacity:0;}}
+
+/* LUZ PASSANDO */
+.light{
+position:fixed;
+top:0;
+left:-100%;
+width:50%;
+height:100%;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);
+animation:shine 6s infinite;
+}
+@keyframes shine{to{left:150%;}}
+
+iframe{
+margin-top:20px;
+border-radius:20px;
+box-shadow:0 0 25px #ff66ff;
+}
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+<div class="intro-text">Uma história escrita pelas estrelas...</div>
+</div>
+
+<div class="moon"></div>
+<div class="name">Marcella Sofia Da Silva Nascimento ✨</div>
+<div class="light"></div>
+
+<div class="container">
+<h1>1 Ano e 8 Meses 💜</h1>
+<div id="contador"></div>
+
+<div id="letter"></div>
+
+<div class="gallery">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+<img src="foto3.jpg">
+</div>
+
+<audio id="music" autoplay loop>
+  <source src="sparks.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* CONTADOR */
+function atualizar(){
+const inicio=new Date("2024-06-25T00:00:00");
+const agora=new Date();
+const diff=agora-inicio;
+const dias=Math.floor(diff/(1000*60*60*24));
+const horas=Math.floor((diff/(1000*60*60))%24);
+const minutos=Math.floor((diff/(1000*60))%60);
+const segundos=Math.floor((diff/1000)%60);
+document.getElementById("contador").innerHTML=
+`Estamos juntos há ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos ❤️`;
+}
+setInterval(atualizar,1000);
+
+/* ESTRELAS */
+for(let i=0;i<200;i++){
+let s=document.createElement("div");
+s.className="star";
+s.style.top=Math.random()*100+"vh";
+s.style.left=Math.random()*100+"vw";
+s.style.animationDuration=(Math.random()*3+1)+"s";
+document.body.appendChild(s);
+}
+
+/* PETALAS */
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="petal";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(Math.random()*5+5)+"s";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),10000);
+},400);
+
+/* CORACOES */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*20+15)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},800);
+
+/* CARTA DIGITANDO */
+const texto=`oii minha vida, sao 00 noite e estou escrevendo esse belo texto pra vc, eu venho atraves desse texto descrever oque eu sinto por vc, vc e td pra mim minha linda, desde o dia que te conheci eu sinto meu coraçao pulsar ao te ver, vc me alegra todo santo dia, vc e o motivo de eu querer viver minha vida presente ao seu lado, eu quero mt ter uma familia com vc, e um dia iremos conquistar td oque nos queremos, eu so quero que vc persista e n desista, eu confio em vc meu amor, eu tou torcendo por cada planos metas e sonhos que vc tem em mente, n se desanime deus tem preparado coisas boas, eu tou com vc ate meu coraçao parar, conte cmg pra td meu amor, so tenho momentos bons em minha memorias com vc, vc esta bem guardada no meu coraçao, e isso eu jamais vou esquecer, isso marcou minha vida, eu te amo minha princesa sofia.`;
+let i=0;
+function digitar(){
+if(i<texto.length){
+document.getElementById("letter").innerHTML+=texto.charAt(i);
+i++;
+setTimeout(digitar,35);
+}}
+setTimeout(digitar,7000);
+
+/* FOGOS */
+setInterval(()=>{
+let f=document.createElement("div");
+f.className="firework";
+f.style.top=Math.random()*50+"vh";
+f.style.left=Math.random()*100+"vw";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1000);
+},2500);
+
+</script>
+</body>
+</html>
